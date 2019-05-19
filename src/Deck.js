@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import Card from './Card'
+import './Deck.css'
 const API_BASE_URL = "https://deckofcardsapi.com/api/deck";
 const ANYWHERE = "https://cors-anywhere.herokuapp.com/";
 
@@ -45,13 +46,21 @@ export class Deck extends Component {
     }
   }
   render() {
+    const cards = this.state.drawn.map(c => (
+      <Card key={c.id} name={c.name} image={c.image} />
+    ));
     return (
-      <div>
-        <h1>card dealear</h1>
-        <button onClick={this.getCard}>Get card!</button>
+      <div className='Deck'>
+        <h1 className='Deck-title'>♦ Card Dealer ♦</h1>
+        <h2 className='Deck-title subtitle'>
+          ♦ A little demo made with React ♦
+        </h2>
+        <button className='Deck-btn' onClick={this.getCard}>
+          Get Card!
+        </button>
+        <div className='Deck-cardarea'>{cards}</div>
       </div>
     );
   }
 }
-
 export default Deck;
